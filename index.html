@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+         rel="stylesheet"
+      />
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" href="style.css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+   </head>
+   <body>
+      <div id="header">
+         <h3>Typing Titans</h3>
+         <ul>
+            <li class="duration current-duration" data-duration="30">30</li>
+            <li class="duration" data-duration="60">60</li>
+            <li class="duration" data-duration="120">120</li>
+         </ul>
+      </div>
+      <div id="container">
+         <div id="info">
+            <div><span id="timeleft"></span></div>
+            <div>wpm <span id="wpm"></span></div>
+            <div>accuracy <span id="accuracy"></span></div>
+         </div>
+         <div id="game" tabindex="0">
+            <div id="words"></div>
+            <div id="caret" class="caret-animation"></div>
+            <div id="focus-error">click here to focus</div>
+         </div>
+
+         <div class="reset-btn-container">
+            <button id="reset">Reset</button>
+         </div>
+      </div>
+
+      <script src="script.js"></script>
+   </body>
+</html>

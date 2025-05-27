@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer"
+      />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
@@ -16,6 +23,13 @@
       <div id="header">
          <h3>Typing Titans</h3>
          <ul>
+            <button class="game-mode" data-mode="listOfQuotes">Quotes</button>
+            <button
+               class="game-mode current-game-mode"
+               data-mode="trickySpelling"
+            >
+               Tricky Spelling
+            </button>
             <li class="duration current-duration" data-duration="30">30</li>
             <li class="duration" data-duration="60">60</li>
             <li class="duration" data-duration="120">120</li>
@@ -34,10 +48,10 @@
          </div>
 
          <div class="reset-btn-container">
-            <button id="reset">Reset</button>
+            <button id="reset"><i class="fa-solid fa-rotate"></i></button>
          </div>
       </div>
 
-      <script src="script.js"></script>
+      <script src="script2.js"></script>
    </body>
 </html>

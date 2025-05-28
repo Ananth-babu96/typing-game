@@ -14,7 +14,9 @@ let gameStarted = false;
 let gameOver = false;
 let correctEntries = 0;
 let totalTyped = 0;
-let selectedGameMode = "trickySpelling";
+let selectedGameMode = "listOfQuotes";
+let quotes;
+let tricky;
 
 //---------------------HELPER FUNCTIONS ---------------------------
 const addClass = (el, cls) => {
@@ -34,13 +36,10 @@ const calculateWpmAndAccuracy = () => {
 //-----------------------TEXT GENERATOR FUNCTION -----------------------
 
 const generateText = async () => {
-   const response = await fetch("./data.json");
-   const data = await response.json();
-
    textData =
       selectedGameMode === "listOfQuotes"
-         ? data.listOfQuotes
-         : selectedGameMode === "trickySpelling" && data.trickySpelling;
+         ? quotes
+         : selectedGameMode === "trickySpelling" && tricky;
    let arrIdx = [...Array(textData.length).keys()];
    const maxItems = selectedGameMode === "listOfQuotes" ? 4 : 50;
    const totalItems = Math.min(textData.length, maxItems);
@@ -61,6 +60,11 @@ const generateText = async () => {
    //-------------------------SECONDARY EVENT LISTENERS---------------------------------------
 };
 window.addEventListener("DOMContentLoaded", async () => {
+   const response = await fetch("./data.json");
+   const data = await response.json();
+   quotes = await data.listOfQuotes;
+   tricky = await data.trickySpelling;
+
    await generateText();
    timeLeft.textContent = timer;
    addClass(document.querySelector(".char"), "current");
@@ -82,7 +86,7 @@ durations.forEach((btn) => {
    });
 });
 resetBtn.addEventListener("click", async () => {
-   resetGame();
+   await resetGame();
 });
 //------------------------------CHANGE GAME MODES----------------------------------------------------
 
@@ -170,29 +174,9 @@ game.addEventListener("keydown", (e) => {
 
 //-----------------------------RESET GAME -----------------------------------------------------
 
-// resetBtn.addEventListener("click", async () => {
-//    clearInterval(gameInterval);
-//    await generateText();
-//    timer = selectedDuration;
-//    wpm.textContent = "";
-//    accuracy.textContent = "";
-//    words.style.opacity = "1";
-//    caret.style.display = "block";
-//    words.style.marginTop = "0px";
-//    gameOver = false;
-//    gameStarted = false;
-//    timeLeft.textContent = selectedDuration;
-//    totalTyped = 0;
-//    correctEntries = 0;
-
-//    document.querySelectorAll(".char").forEach((el) => {
-//       el.classList.remove("current", "correct", "incorrect", "underline");
-//    });
-//    addClass(document.querySelector(".char"), "current");
-//    game.focus();
-// });
 const resetGame = async () => {
    clearInterval(gameInterval);
+
    await generateText();
 
    timer = selectedDuration;

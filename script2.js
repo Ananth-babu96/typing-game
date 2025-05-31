@@ -15,8 +15,8 @@ let gameOver = false;
 let correctEntries = 0;
 let totalTyped = 0;
 let selectedGameMode = "listOfQuotes";
-let quotes;
 let tricky;
+let quotes;
 
 //---------------------HELPER FUNCTIONS ---------------------------
 const addClass = (el, cls) => {
@@ -36,12 +36,17 @@ const calculateWpmAndAccuracy = () => {
 //-----------------------TEXT GENERATOR FUNCTION -----------------------
 
 const generateText = async () => {
+   // const response = await fetch("./data.json");
+   // const data = await response.json();
+
    textData =
       selectedGameMode === "listOfQuotes"
          ? quotes
          : selectedGameMode === "trickySpelling" && tricky;
+         ? quotes
+         : selectedGameMode === "trickySpelling" && tricky;
    let arrIdx = [...Array(textData.length).keys()];
-   const maxItems = selectedGameMode === "listOfQuotes" ? 4 : 50;
+   const maxItems = selectedGameMode === "listOfQuotes" ? 4 : 225;
    const totalItems = Math.min(textData.length, maxItems);
    let textList = [];
    for (let i = 0; i < totalItems; i++) {
@@ -62,9 +67,8 @@ const generateText = async () => {
 window.addEventListener("DOMContentLoaded", async () => {
    const response = await fetch("./data.json");
    const data = await response.json();
-   quotes = await data.listOfQuotes;
    tricky = await data.trickySpelling;
-
+   quotes = await data.listOfQuotes;
    await generateText();
    timeLeft.textContent = timer;
    addClass(document.querySelector(".char"), "current");
